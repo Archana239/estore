@@ -219,7 +219,7 @@ class ReviewDetailsView(APIView):
 
 
 class ProductsViewSetView(ViewSet):
-    authentication_classes = [authentication.TokenAuthentication]
+    # authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     def list(self,request,*args,**kwargs):
         qs = Books.objects.all()
@@ -280,7 +280,7 @@ class ProductModelViewsetView(ModelViewSet):
     def add_to_cart(self,request,*args,**kwargs):
         id=kwargs.get("pk")
         book = Books.objects.get(id = id)
-        Carts.objects.create(book=book, user=request.user, status=request.data.get("options"))
+        Carts.objects.create(book=book, user=request.user)
         return Response(data="created")
 
     @action(methods=["GET"],detail=True)

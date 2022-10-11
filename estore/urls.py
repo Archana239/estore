@@ -20,6 +20,7 @@ from api.views import CubeView,NumCheckView,FactorialView,WordCountView,Amstrong
     PalindromeView,PrimeView,ProductsView,ProductDetailsView,ReviewsView,ReviewDetailsView,\
     ProductsViewSetView,ProductModelViewsetView,ReviewModelViewsetView,UsersView
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register("api/v1/products",ProductsViewSetView,basename="products")
@@ -39,7 +40,9 @@ urlpatterns = [
     path('products/<int:id>',ProductDetailsView.as_view()),
     path('reviews',ReviewsView.as_view()),
     path('reviews/<int:id>',ReviewDetailsView.as_view()),
-    path('token/',ObtainAuthToken.as_view())
+    # path('token/',ObtainAuthToken.as_view())
+    path('token/',TokenObtainPairView.as_view()),
+    path('token/refresh/',TokenRefreshView.as_view())
     
 #     path('products',ProductsView.as_view()),
 #     path('morning',MorningView.as_view()),
